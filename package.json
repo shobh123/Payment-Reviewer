@@ -1,0 +1,45 @@
+{
+  "name": "payment-service-app",
+  "version": "1.0.0",
+  "description": "Full-featured payment service application with rating system and Truecaller integration",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server/index.js",
+    "client": "cd client && npm start",
+    "build": "cd client && npm run build",
+    "install-all": "npm install && cd client && npm install"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "axios": "^1.6.2",
+    "moment": "^2.29.4",
+    "uuid": "^9.0.1",
+    "multer": "^1.4.5-lts.1",
+    "crypto": "^1.0.1",
+    "node-cron": "^3.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "payment",
+    "fintech",
+    "truecaller",
+    "rating",
+    "trust-score",
+    "money-transfer"
+  ],
+  "author": "Payment Service Team",
+  "license": "MIT"
+}
