@@ -239,6 +239,7 @@ async function seedDatabase() {
       createdAt.setDate(createdAt.getDate() - Math.floor(Math.random() * 180));
 
       const transaction = new Transaction({
+        transactionId: `TXN-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
         sender: sender._id,
         receiver: receiver._id,
         amount,
@@ -298,6 +299,7 @@ async function seedDatabase() {
         const context = isReceiverRating ? 'payment_received' : 'payment_sent';
 
         const ratingDoc = new Rating({
+          ratingId: `RAT-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
           rater,
           rated,
           transaction: transaction._id,
@@ -341,6 +343,7 @@ async function seedDatabase() {
 
       const amount = Math.floor(Math.random() * 200) + 20;
       const transaction = new Transaction({
+        transactionId: `TXN-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
         sender: sender._id,
         receiver: receiver._id,
         amount,
@@ -369,6 +372,7 @@ async function seedDatabase() {
       scheduledFor.setDate(scheduledFor.getDate() + Math.floor(Math.random() * 30) + 1); // 1-30 days from now
 
       const transaction = new Transaction({
+        transactionId: `TXN-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
         sender: sender._id,
         receiver: receiver._id,
         amount,
