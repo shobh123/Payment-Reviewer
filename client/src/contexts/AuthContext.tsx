@@ -5,6 +5,7 @@ interface User {
   id: string;
   firstName: string;
   lastName: string;
+  name?: string;
   email: string;
   phone: string;
   avatar?: string;
@@ -19,8 +20,8 @@ interface User {
 interface AuthContextType {
   user: User | null;
   loading: boolean;
-  login: (credentials: { identifier: string; password: string }) => Promise<void>;
-  register: (userData: any) => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
+  register: (name: string, email: string, password: string) => Promise<void>;
   logout: () => void;
   updateUser: (userData: Partial<User>) => void;
   refreshUser: () => Promise<void>;
@@ -66,9 +67,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     initializeAuth();
   }, []);
 
-  const login = async (credentials: { identifier: string; password: string }) => {
+  const login = async (email: string, password: string) => {
     try {
-      const response = await apiService.login(credentials);
+      const response = await apiService.login({ identifier: email, password });
       if (response.success) {
         localStorage.setItem('token', response.token);
         setUser(response.user);
@@ -80,8 +81,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const register = async (userData: any) => {
+  const register = async (name: string, email: string, password: string) => {
     try {
+      const [firstName, lastName] = name.split(' ');
+      const userData = {
+        firstName: firstName || '',
+        lastName: lastName || '',
+        email,
+        password
+      };
       const response = await apiService.register(userData);
       if (response.success) {
         localStorage.setItem('token', response.token);
