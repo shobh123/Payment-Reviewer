@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Container,
-  Grid,
   Typography,
   Box,
   Paper,
@@ -117,98 +116,89 @@ const Dashboard: React.FC = () => {
 
           {/* Stats Cards */}
           <motion.div variants={itemVariants} className="mb-8">
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={6} md={3}>
-                <StatCard
-                  title="Total Balance"
-                  value="$12,456.78"
-                  change={12.5}
-                  changeType="increase"
-                  icon={<CurrencyDollarIcon className="w-6 h-6" />}
-                  gradient
-                  color="primary"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} md={3}>
-                <StatCard
-                  title="This Month Sent"
-                  value="$3,245.00"
-                  change={-2.3}
-                  changeType="decrease"
-                  icon={<ArrowUpIcon className="w-6 h-6" />}
-                  gradient
-                  color="warning"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} md={3}>
-                <StatCard
-                  title="This Month Received"
-                  value="$8,125.50"
-                  change={18.2}
-                  changeType="increase"
-                  icon={<ArrowDownIcon className="w-6 h-6" />}
-                  gradient
-                  color="success"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} md={3}>
-                <StatCard
-                  title="Pending Transactions"
-                  value="3"
-                  icon={<ClockIcon className="w-6 h-6" />}
-                  gradient
-                  color="secondary"
-                />
-              </Grid>
-            </Grid>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <StatCard
+                title="Total Balance"
+                value="$12,456.78"
+                change={12.5}
+                changeType="increase"
+                icon={<CurrencyDollarIcon className="w-6 h-6" />}
+                gradient
+                color="primary"
+              />
+              <StatCard
+                title="This Month Sent"
+                value="$3,245.00"
+                change={-2.3}
+                changeType="decrease"
+                icon={<ArrowUpIcon className="w-6 h-6" />}
+                gradient
+                color="warning"
+              />
+              <StatCard
+                title="This Month Received"
+                value="$8,125.50"
+                change={18.2}
+                changeType="increase"
+                icon={<ArrowDownIcon className="w-6 h-6" />}
+                gradient
+                color="success"
+              />
+              <StatCard
+                title="Pending Transactions"
+                value="3"
+                icon={<ClockIcon className="w-6 h-6" />}
+                gradient
+                color="secondary"
+              />
+            </div>
           </motion.div>
 
           {/* Quick Actions */}
           <motion.div variants={itemVariants} className="mb-8">
             <ModernCard title="Quick Actions" className="mb-6">
-              <Grid container spacing={2}>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {quickActions.map((action, index) => (
-                  <Grid item xs={6} sm={3} key={action.label}>
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                  <motion.div
+                    key={action.label}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Paper
+                      className={`
+                        p-4 text-center cursor-pointer transition-all duration-200 hover:shadow-lg
+                        ${action.color === 'primary' ? 'hover:bg-blue-50 border border-blue-100' : ''}
+                        ${action.color === 'secondary' ? 'hover:bg-purple-50 border border-purple-100' : ''}
+                        ${action.color === 'success' ? 'hover:bg-green-50 border border-green-100' : ''}
+                        ${action.color === 'warning' ? 'hover:bg-yellow-50 border border-yellow-100' : ''}
+                      `}
+                      elevation={0}
+                      sx={{ borderRadius: '12px' }}
                     >
-                      <Paper
+                      <Box 
                         className={`
-                          p-4 text-center cursor-pointer transition-all duration-200 hover:shadow-lg
-                          ${action.color === 'primary' ? 'hover:bg-blue-50 border border-blue-100' : ''}
-                          ${action.color === 'secondary' ? 'hover:bg-purple-50 border border-purple-100' : ''}
-                          ${action.color === 'success' ? 'hover:bg-green-50 border border-green-100' : ''}
-                          ${action.color === 'warning' ? 'hover:bg-yellow-50 border border-yellow-100' : ''}
+                          w-12 h-12 mx-auto mb-3 rounded-xl flex items-center justify-center
+                          ${action.color === 'primary' ? 'bg-blue-100 text-blue-600' : ''}
+                          ${action.color === 'secondary' ? 'bg-purple-100 text-purple-600' : ''}
+                          ${action.color === 'success' ? 'bg-green-100 text-green-600' : ''}
+                          ${action.color === 'warning' ? 'bg-yellow-100 text-yellow-600' : ''}
                         `}
-                        elevation={0}
-                        sx={{ borderRadius: '12px' }}
                       >
-                        <Box 
-                          className={`
-                            w-12 h-12 mx-auto mb-3 rounded-xl flex items-center justify-center
-                            ${action.color === 'primary' ? 'bg-blue-100 text-blue-600' : ''}
-                            ${action.color === 'secondary' ? 'bg-purple-100 text-purple-600' : ''}
-                            ${action.color === 'success' ? 'bg-green-100 text-green-600' : ''}
-                            ${action.color === 'warning' ? 'bg-yellow-100 text-yellow-600' : ''}
-                          `}
-                        >
-                          {action.icon}
-                        </Box>
-                        <Typography variant="body2" className="font-medium text-gray-800">
-                          {action.label}
-                        </Typography>
-                      </Paper>
-                    </motion.div>
-                  </Grid>
+                        {action.icon}
+                      </Box>
+                      <Typography variant="body2" className="font-medium text-gray-800">
+                        {action.label}
+                      </Typography>
+                    </Paper>
+                  </motion.div>
                 ))}
-              </Grid>
+              </div>
             </ModernCard>
           </motion.div>
 
-          <Grid container spacing={3}>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Monthly Overview Chart */}
-            <Grid item xs={12} lg={8}>
+            <div className="lg:col-span-2">
               <motion.div variants={itemVariants}>
                 <ModernCard title="Monthly Overview" className="h-96">
                   <ResponsiveContainer width="100%" height="100%">
@@ -230,10 +220,10 @@ const Dashboard: React.FC = () => {
                   </ResponsiveContainer>
                 </ModernCard>
               </motion.div>
-            </Grid>
+            </div>
 
             {/* Expense Breakdown */}
-            <Grid item xs={12} lg={4}>
+            <div className="lg:col-span-1">
               <motion.div variants={itemVariants}>
                 <ModernCard title="Expense Breakdown" className="h-96">
                   <ResponsiveContainer width="100%" height="100%">
@@ -280,10 +270,10 @@ const Dashboard: React.FC = () => {
                   </Box>
                 </ModernCard>
               </motion.div>
-            </Grid>
+            </div>
 
             {/* Recent Transactions */}
-            <Grid item xs={12}>
+            <div className="lg:col-span-3">
               <motion.div variants={itemVariants}>
                 <ModernCard title="Recent Transactions" className="overflow-hidden">
                   <Box className="space-y-4">
@@ -354,8 +344,8 @@ const Dashboard: React.FC = () => {
                   </Box>
                 </ModernCard>
               </motion.div>
-            </Grid>
-          </Grid>
+            </div>
+          </div>
         </motion.div>
       </Container>
     </div>

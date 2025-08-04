@@ -18,7 +18,7 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import {
-  MenuIcon,
+  Bars3Icon as MenuIcon,
   HomeIcon,
   CreditCardIcon,
   BanknotesIcon,

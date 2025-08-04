@@ -4,7 +4,6 @@ import {
   Container,
   Typography,
   Box,
-  Grid,
   Card,
   CardContent,
   IconButton,
@@ -237,27 +236,26 @@ const LandingPage: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8 }}
         >
-          <Grid container spacing={3} className="mb-20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
             {stats.map((stat, index) => (
-              <Grid item xs={6} md={3} key={stat.title}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.2 + index * 0.1, duration: 0.6 }}
-                >
-                  <StatCard
-                    title={stat.title}
-                    value={stat.value}
-                    change={stat.change}
-                    changeType={stat.change > 0 ? 'increase' : 'neutral'}
-                    icon={stat.icon}
-                    gradient
-                    color="primary"
-                  />
-                </motion.div>
-              </Grid>
+              <motion.div
+                key={stat.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2 + index * 0.1, duration: 0.6 }}
+              >
+                <StatCard
+                  title={stat.title}
+                  value={stat.value}
+                  change={stat.change}
+                  changeType={stat.change > 0 ? 'increase' : 'neutral'}
+                  icon={stat.icon}
+                  gradient
+                  color="primary"
+                />
+              </motion.div>
             ))}
-          </Grid>
+          </div>
         </motion.div>
 
         {/* Features Section */}
@@ -280,54 +278,53 @@ const LandingPage: React.FC = () => {
             Built for the modern world with cutting-edge technology
           </Typography>
 
-          <Grid container spacing={4}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <Grid item xs={12} md={4} key={feature.title}>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.8 + index * 0.2, duration: 0.6 }}
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.8 + index * 0.2, duration: 0.6 }}
+              >
+                <ModernCard
+                  title={feature.title}
+                  className="h-full text-center"
+                  hoverable
                 >
-                  <ModernCard
-                    title={feature.title}
-                    className="h-full text-center"
-                    hoverable
-                  >
-                    <Box className="flex flex-col items-center">
-                      <Box 
-                        className={`
-                          w-16 h-16 rounded-2xl flex items-center justify-center mb-4
-                          ${feature.color === 'primary' ? 'bg-gradient-to-br from-blue-500 to-blue-600' : ''}
-                          ${feature.color === 'secondary' ? 'bg-gradient-to-br from-purple-500 to-purple-600' : ''}
-                          ${feature.color === 'success' ? 'bg-gradient-to-br from-green-500 to-green-600' : ''}
-                          text-white shadow-lg
-                        `}
-                      >
-                        {feature.icon}
-                      </Box>
-                      <Typography
-                        variant="body1"
-                        className="text-gray-600 mb-4"
-                      >
-                        {feature.description}
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        className={`
-                          font-semibold cursor-pointer hover:underline
-                          ${feature.color === 'primary' ? 'text-blue-600' : ''}
-                          ${feature.color === 'secondary' ? 'text-purple-600' : ''}
-                          ${feature.color === 'success' ? 'text-green-600' : ''}
-                        `}
-                      >
-                        Learn More →
-                      </Typography>
+                  <Box className="flex flex-col items-center">
+                    <Box 
+                      className={`
+                        w-16 h-16 rounded-2xl flex items-center justify-center mb-4
+                        ${feature.color === 'primary' ? 'bg-gradient-to-br from-blue-500 to-blue-600' : ''}
+                        ${feature.color === 'secondary' ? 'bg-gradient-to-br from-purple-500 to-purple-600' : ''}
+                        ${feature.color === 'success' ? 'bg-gradient-to-br from-green-500 to-green-600' : ''}
+                        text-white shadow-lg
+                      `}
+                    >
+                      {feature.icon}
                     </Box>
-                  </ModernCard>
-                </motion.div>
-              </Grid>
+                    <Typography
+                      variant="body1"
+                      className="text-gray-600 mb-4"
+                    >
+                      {feature.description}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      className={`
+                        font-semibold cursor-pointer hover:underline
+                        ${feature.color === 'primary' ? 'text-blue-600' : ''}
+                        ${feature.color === 'secondary' ? 'text-purple-600' : ''}
+                        ${feature.color === 'success' ? 'text-green-600' : ''}
+                      `}
+                    >
+                      Learn More →
+                    </Typography>
+                  </Box>
+                </ModernCard>
+              </motion.div>
             ))}
-          </Grid>
+          </div>
         </motion.div>
 
         {/* CTA Section */}
